@@ -1,0 +1,5 @@
+-Berufsschule: \linebreak
+-AEW:[3h] \linebreak
+-ITS:[3h] \linebreak
+-ENG:[2h] \linebreak
+&
