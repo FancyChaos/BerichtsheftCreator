@@ -41,7 +41,7 @@ def datesToGermanDates(dates):
     Converts date objects to german date strings
 
     :param dates: List of dates objects
-    :return: List of german dates as string
+    :return: German dates as list of strings
     """
     ger_date = []
     for i in dates:
