@@ -16,7 +16,7 @@ def _buildHeader(dates, calweek, year):
     lheader = ['\n', '\\newpage\n', '\n', '\\subsubsection{KW ' + str(calweek) + ' '
                + str(year) + ': '
                + dates[0] + ' - '
-               + dates[4] + '}\n', '\\begin{tabular}{|L{2cm}|L{10cm}|L{5cm}|}\n', '\\hline\n',
+               + dates[-1] + '}\n', '\\begin{tabular}{|L{2cm}|L{10cm}|L{5cm}|}\n', '\\hline\n',
                '\\textbf{Datum} & \\textbf{Taetigkeit Betrieb '
                '/ Lerninhalt Schule [Zeit in h]} & '
                '\\textbf{Schulung / Meeting / Termin} \\\\\n']
@@ -43,7 +43,7 @@ def buildWeek(file_name, dates, calweek, year):
         data.append(datehandler.getWeekday(index) + ', ' + entry + '\n')
         data.append('&\n')
         # put stuff for day-templates here like open([index].txt, 'r')
-        with open('./templates/' + str(index) + '.txt', 'r') as template:
+        with open('./templates/' + datehandler.getWeekday(index) + '.txt', 'r') as template:
             content = template.readlines()
             for line in content:
                 data.append(line)

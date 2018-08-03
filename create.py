@@ -35,6 +35,7 @@ def doSomeEyeCandy():
           "### Die Faulheit allein ist göttlich.                           ###",
           "###                                             Anatole France  ###",
           "###################################################################",
+          "######### Nicht vergessen die config.py Datei anzupassen! #########",
           sep="\n",
           end="\n\n\n")
 
@@ -75,9 +76,14 @@ def menu():
                     valid_date = datehandler.dateValid(input_date)
                     subprocess.call("clear")
 
+            weekdays = 0
+            while weekdays < 1 or weekdays > 7:
+                weekdays = int(input("Wie viele Wochentage sollen hinzugefügt werden?: "))
+                subprocess.call("clear")
+
             year = input_date.split(".")[2]
             calweek = datehandler.getCalWeek(input_date)
-            dates = datehandler.datesToGermanDates(datehandler.makeDateList(input_date))
+            dates = datehandler.datesToGermanDates(datehandler.makeDateList(input_date, weekdays))
 
             filehandler.buildWeek(args.file_name, dates, calweek, year)
 
