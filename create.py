@@ -1,7 +1,6 @@
 # If you import the function without
 import subprocess
-import datehandler
-import filehandler
+from lib import datehandler, filehandler
 import argparse
 
 

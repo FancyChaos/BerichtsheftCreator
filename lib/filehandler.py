@@ -1,5 +1,5 @@
-from config import config
-import datehandler
+from lib.config import config
+from lib import datehandler
 import shutil
 
 
