@@ -1,4 +1,5 @@
 import datetime
+import calendar
 
 
 def getWeekday(daynumber):
@@ -23,15 +24,26 @@ def getWeekday(daynumber):
 
 def makeDateList(input_date):
     """
-    Tales the user input date and produces a list with 5 date objects from Monday-Friday
+    Takes the user input date and produces a list with 5 date objects from Monday-Friday
 
     :param input_date: Date as string
     :return: List of date objects
     """
     input_date = input_date.split(".")
     dates = []
-    for i in range(int(input_date[0]), int(input_date[0])+5):
-        date_object = datetime.date(int(input_date[2]), int((input_date[1])), i)
+    day = int(input_date[0])
+    month = int(input_date[1])
+    year = int(input_date[2])
+    update_month = True
+
+    days_in_month = calendar.monthrange(year, month)[1]
+    for i in range(day, day+5):
+        if i > days_in_month:
+            i = i - days_in_month
+            if update_month:
+                month = month + 1
+                update_month = False
+        date_object = datetime.date(year, month, i)
         dates.append(date_object)
     return dates
 

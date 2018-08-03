@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # If you import the function without
 import subprocess
 from lib import datehandler, filehandler
