@@ -55,7 +55,7 @@ def buildWeek(file_name, dates, calweek, year):
     data.append('\\end{tabular}\n')
     data.append('\\vfill\n')
     data.append('\\unterschriften {' + config.get("name") + " " + config.get("last_name") + '}{Auszubildender}{'
-                + config.get("instructor_title") + config.get("instructor_name") + config.get("instructor_last_name")
+                + config.get("instructor_title") + " " + config.get("instructor_name") + " " + config.get("instructor_last_name")
                 + '}{Ausbilder}\n')
     data.append('\\end{document}\n')
 
