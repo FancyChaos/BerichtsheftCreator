@@ -14,7 +14,9 @@ def getWeekday(daynumber):
         1: 'Dienstag',
         2: 'Mittwoch',
         3: 'Donnerstag',
-        4: 'Freitag'
+        4: 'Freitag',
+        5: 'Samstag',
+        6: 'Sonntag'
     }
 
     weekday = ger_weekdays.get(daynumber, "Undefined")
@@ -22,7 +24,7 @@ def getWeekday(daynumber):
     return weekday
 
 
-def makeDateList(input_date):
+def makeDateList(input_date, weekdays):
     """
     Takes the user input date and produces a list with 5 date objects from Monday-Friday
 
@@ -37,7 +39,7 @@ def makeDateList(input_date):
     update_month = True
 
     days_in_month = calendar.monthrange(year, month)[1]
-    for i in range(day, day+5):
+    for i in range(day, day+weekdays):
         if i > days_in_month:
             i = i - days_in_month
             if update_month:
