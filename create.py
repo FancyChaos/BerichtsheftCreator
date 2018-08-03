@@ -3,6 +3,8 @@
 import subprocess
 from lib import datehandler, filehandler
 import argparse
+import locale
+import sys
 
 
 # Arguement parser for the .tex file name
@@ -16,6 +18,17 @@ args = parser.parse_args()
 
 # dev branch test
 def main():
+    # Set locale to get the name of the weekday in german
+    # If the set fails, the weekdays will be displayed in english!
+    try:
+        locale.setlocale(locale.LC_TIME, "de_DE.utf8")
+    except locale.Error as e:
+        print("Die locale(sprache) 'de_DE.utf8' ist nicht installiert",
+              "Bitte installieren sie diese um die Wochentage auf Deutsch zu haben",
+              "Um zu sehen welche locales installiert sind geben sie in der Shell ein: 'locale -a'",
+              sep="\n")
+        sys.exit()
+
     doSomeEyeCandy()
     menu()
 
@@ -83,7 +96,7 @@ def menu():
 
             year = input_date.split(".")[2]
             calweek = datehandler.getCalWeek(input_date)
-            dates = datehandler.datesToGermanDates(datehandler.makeDateList(input_date, weekdays))
+            dates = datehandler.makeDateList(input_date, weekdays)
 
             filehandler.buildWeek(args.file_name, dates, calweek, year)
 
