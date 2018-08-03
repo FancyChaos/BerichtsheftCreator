@@ -13,7 +13,7 @@ def _buildHeader(dates, calweek, year):
     :return: Every line of the header as list
     """
 
-    lheader = ['\n', '\\newpage\n', '\n', '\\subsubsection{KW ' + str(calweek) + ' '
+    lheader = ['\n', '\\newpage\n', '\n', '\\subsection{KW ' + str(calweek) + ' '
                + str(year) + ': '
                + dates[0].strftime("%d.%m.%Y") + ' - '
                + dates[-1].strftime("%d.%m.%Y")+ '}\n', '\\begin{tabular}{|L{2cm}|L{10cm}|L{5cm}|}\n', '\\hline\n',
