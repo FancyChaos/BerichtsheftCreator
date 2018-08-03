@@ -1,11 +1,11 @@
 # Dictionary that stores every important aspect of the user
 
 config = {
-    "name": "Felix",
-    "last_name": "Scheja",
-    "instructor_name": "Robert",
-    "instructor_last_name": "Rae",
-    "instructor_title": "Dr."
+    "name": "your_name",
+    "last_name": "your_last_name",
+    "instructor_name": "instructor_name",
+    "instructor_last_name": "instructor_last_name",
+    "instructor_title": "instructor_title"
 
 }
 
