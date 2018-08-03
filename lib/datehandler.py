@@ -2,31 +2,9 @@ import datetime
 import calendar
 
 
-def getWeekday(daynumber):
-    """
-    Get weekday by its number
-
-    :param daynumber: Number of the day of the week
-    :return: The day corresponding the the number as string, undefined if unknown number
-    """
-    ger_weekdays = {
-        0: 'Montag',
-        1: 'Dienstag',
-        2: 'Mittwoch',
-        3: 'Donnerstag',
-        4: 'Freitag',
-        5: 'Samstag',
-        6: 'Sonntag'
-    }
-
-    weekday = ger_weekdays.get(daynumber, "Undefined")
-
-    return weekday
-
-
 def makeDateList(input_date, weekdays):
     """
-    Takes the user input date and produces a list with 5 date objects from Monday-Friday
+    Takes the user input date and produces a list with up to 7 date objects from Monday-Sunday
 
     :param input_date: Date as string
     :return: List of date objects
@@ -48,19 +26,6 @@ def makeDateList(input_date, weekdays):
         date_object = datetime.date(year, month, i)
         dates.append(date_object)
     return dates
-
-
-def datesToGermanDates(dates):
-    """
-    Converts date objects to german date strings
-
-    :param dates: List of dates objects
-    :return: German dates as list of strings
-    """
-    ger_date = []
-    for i in dates:
-        ger_date.append(i.strftime("%d.%m.%Y"))
-    return ger_date
 
 
 def getCalWeek(input_date):

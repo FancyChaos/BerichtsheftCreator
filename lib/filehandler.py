@@ -7,16 +7,16 @@ def _buildHeader(dates, calweek, year):
     """
     Simple copy of Lars function with few edits
 
-    :param dates: German dates as list of strings
+    :param dates: Dates as list of date objects
     :param calweek: Calender week as int/string
     :param year: Year as int/str
     :return: Every line of the header as list
     """
 
-    lheader = ['\n', '\\newpage\n', '\n', '\\subsubsection{KW ' + str(calweek) + ' '
+    lheader = ['\n', '\\newpage\n', '\n', '\\subsection{KW ' + str(calweek) + ' '
                + str(year) + ': '
-               + dates[0] + ' - '
-               + dates[-1] + '}\n', '\\begin{tabular}{|L{2cm}|L{10cm}|L{5cm}|}\n', '\\hline\n',
+               + dates[0].strftime("%d.%m.%Y") + ' - '
+               + dates[-1].strftime("%d.%m.%Y")+ '}\n', '\\begin{tabular}{|L{2cm}|L{10cm}|L{5cm}|}\n', '\\hline\n',
                '\\textbf{Datum} & \\textbf{Taetigkeit Betrieb '
                '/ Lerninhalt Schule [Zeit in h]} & '
                '\\textbf{Schulung / Meeting / Termin} \\\\\n']
@@ -30,7 +30,7 @@ def buildWeek(file_name, dates, calweek, year):
     This function will be called from the menu
 
     :param file_name: Name of the .tex file
-    :param dates: German dates as list of strings
+    :param dates: Dates as list of date objects
     :param calweek: Calender week as int/string
     :param year: Year as int/str
     :return:
@@ -38,12 +38,12 @@ def buildWeek(file_name, dates, calweek, year):
 
     data = _buildHeader(dates, calweek, year)
 
-    for index, entry in enumerate(dates):
+    for entry in dates:
         data.append('\\hline\n')
-        data.append(datehandler.getWeekday(index) + ', ' + entry + '\n')
+        data.append(entry.strftime("%A") + ', ' + entry.strftime("%d.%m.%Y") + '\n')
         data.append('&\n')
-        # put stuff for day-templates here like open([index].txt, 'r')
-        with open('./templates/' + datehandler.getWeekday(index) + '.txt', 'r') as template:
+        # put stuff for day-templates here
+        with open('./templates/' + entry.strftime("%A") + '.txt', 'r') as template:
             content = template.readlines()
             for line in content:
                 data.append(line)
@@ -55,7 +55,7 @@ def buildWeek(file_name, dates, calweek, year):
     data.append('\\end{tabular}\n')
     data.append('\\vfill\n')
     data.append('\\unterschriften {' + config.get("name") + " " + config.get("last_name") + '}{Auszubildender}{'
-                + config.get("instructor_title") + config.get("instructor_name") + config.get("instructor_last_name")
+                + config.get("instructor_title") + " " + config.get("instructor_name") + " " + config.get("instructor_last_name")
                 + '}{Ausbilder}\n')
     data.append('\\end{document}\n')
 
